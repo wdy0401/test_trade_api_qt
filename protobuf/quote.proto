@@ -1,0 +1,21 @@
+//protoc -I=./ --cpp_out=./ ./quote.proto
+
+package QUOTE;
+
+message quote_record
+{
+
+
+	required	int64				tm=1;
+	required string			type=2;
+	optional double 			price=3;
+	optional int32 			size=4;
+	optional int32				level=5[default=0];
+	optional bool				tradeable=6[default = false];
+}
+
+message qrs
+{
+	required 	string			symbol=1;
+	repeated	quote_record	qr=2;
+}

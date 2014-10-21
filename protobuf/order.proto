@@ -1,0 +1,25 @@
+//protoc -I=./ --cpp_out=./ ./order.proto
+
+package TRANS_ORDER;
+
+
+enum ebuysell {
+	buy = 0;
+	sell = 1;
+}
+message order
+{
+	required string	symbol = 1;
+	optional double	price = 2; 
+	required int32		size = 3;
+	required	ebuysell	buysell =4;
+	optional int32		date = 5[default=0];
+	optional	double	begintm = 6[default=0];
+	optional	double	endtm = 7[default=0];
+	optional	bool		marketorder = 8[default=false];
+	
+}
+message orders
+{
+	repeated order order_list =1;
+}
