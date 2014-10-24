@@ -68,6 +68,21 @@
     <ClCompile Include="protobuf\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gpp_qt\bar\bar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gpp_qt\wtimer\wtimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gpp_qt\bar\bars.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ctp_quote.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gpp_qt\wfunction\wfunction.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="gpp_qt\cfg\cfg.h">
@@ -83,6 +98,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="protobuf\targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpp_qt\bar\bar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpp_qt\wtimer\wtimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpp_qt\bar\bars.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ctp_quote.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="gpp_qt\wfunction\wfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

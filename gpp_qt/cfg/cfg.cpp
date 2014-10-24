@@ -4,6 +4,7 @@
 #include<fstream>
 #include<string>
 using namespace std;
+
 cfg::cfg()
 {
 	_cfgfile="c:\\cfg\\simu.cfg";
@@ -27,6 +28,13 @@ const std::string cfg::getparam(const std::string & param)
 void cfg::setcfgfile(const std::string & cfgfile)
 {
 	_cfgfile=cfgfile;
+	clearcfg();
+	loadfile();
+}
+void cfg::addcfgfile(const std::string & cfgfile)
+{
+	_cfgfile=cfgfile;
+	loadfile();
 }
 void cfg::setsep(const std::string & sep)
 {

@@ -24,7 +24,7 @@ public:
 	static std::string itos(long);
 	static std::string ftos(double);
 	static std::list<std::string> splitstring(std::string);
-	static std::list<std::string> splitstring(std::string,std::string);
+	static std::list<std::string> splitstring(std::string,const std::string &);
 	static char * gbk2utf8(const char*);
 	static char * utf82gbk(const char*);
 	static void UnZipStream(std::ifstream& inputFile,std::ofstream& outputFile);

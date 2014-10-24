@@ -30,7 +30,7 @@ list<string> wfunction::splitstring(std::string tp)
 	return splitstring(tp,",");
 }
 
-list<string> wfunction::splitstring(std::string tp,std::string splitchar)
+list<string> wfunction::splitstring(std::string tp,const std::string & splitchar)
 {
 	list<string> ret;
 	while(tp.size())
