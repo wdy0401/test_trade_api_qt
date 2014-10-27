@@ -19,6 +19,8 @@ using namespace std;
 cfg simucfg;
 wtimer tm;
 bars mybars;
+CThostFtdcMdApi * pUserApi;
+
 
 
 
@@ -28,13 +30,21 @@ QApplication * qa;
 
 int main(int argc, char *argv[])
 {
-//    QApplication a(argc, argv);
-//    MainWindow w;
-//    qa=&a;
-//    mw=&w;
+    QApplication a(argc, argv);
+    MainWindow w;
+    qa=&a;
+    mw=&w;
+
 	simucfg.setcfgfile("c:/cfg/simu_trade.cfg");
 	ctp_quote quote;
-//    w.show();	
-//    return a.exec();
-	return 0;
+	CThostFtdcMdApi * pUserApi;
+	pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();			// ´´½¨UserApi
+	pUserApi->RegisterSpi(&quote);
+	pUserApi->RegisterFront(const_cast<char*>(simucfg.getparam("FRONT_ADDR").c_str()));
+	pUserApi->Init();
+	pUserApi->Join();
+	w.show();
+	
+    return a.exec();
+//	return 0;
 }

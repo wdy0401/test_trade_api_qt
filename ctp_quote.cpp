@@ -8,44 +8,55 @@
 #define MAX_CONTRACT_NAME 1024
 
 extern cfg simucfg;
+extern CThostFtdcMdApi * pUserApi;
+
 
 using namespace std;
 ctp_quote::ctp_quote()
 {
 	nRequestID=0;
-		
-	string BROKER_ID=simucfg.getparam("BROKER_ID");
-	string INVESTOR_ID=simucfg.getparam("INVESTOR_ID");
-	string PASSWORD=simucfg.getparam("PASSWORD");
-
-	memset(req, 0, sizeof(*req));
-	strncpy(req->BrokerID,const_cast<char*>(BROKER_ID.c_str()),sizeof(req->BrokerID));
-	strncpy(req->UserID,const_cast<char*>(PASSWORD.c_str()),sizeof(req->UserID));
-	strncpy(req->Password,const_cast<char*>(PASSWORD.c_str()),sizeof(req->Password));
-
+	
+	//char *ppInstrumentID[] = {"m1501","IF1411","IF1410","cu1501"};
 	ppInstrumentID = new char*[MAX_CONTRACT_NUMBER];
 	nppInstrumentID=0;
-	//list<string> contracts=wfunction::splitstring(simucfg.getparam("INSTRUMENT_ID"));
-	list<string> contracts;
-	contracts.push_front("IF1411");
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	//这是神马问题呢
-	//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	int aa=12;
-	cout <<aa<<endl;
+	list<string> contracts=wfunction::splitstring(simucfg.getparam("INSTRUMENT_ID"));
 	for(list<string>::iterator iter=contracts.begin();iter!=contracts.end();iter++)
 	{
 		ppInstrumentID[nppInstrumentID]=new char [MAX_CONTRACT_NAME];
 		ppInstrumentID[nppInstrumentID]=const_cast<char*>(iter->c_str());
 		nppInstrumentID++;
 	}
-		
+
+	string BROKER_ID=simucfg.getparam("BROKER_ID");
+	string INVESTOR_ID=simucfg.getparam("INVESTOR_ID");
+	string PASSWORD=simucfg.getparam("PASSWORD");
+
+	req=new CThostFtdcReqUserLoginField;
+	memset(req, 0, sizeof(*req));
+	strncpy(req->BrokerID,const_cast<char*>(BROKER_ID.c_str()),sizeof(req->BrokerID));
+	strncpy(req->UserID,const_cast<char*>(PASSWORD.c_str()),sizeof(req->UserID));
+	strncpy(req->Password,const_cast<char*>(PASSWORD.c_str()),sizeof(req->Password));
+
+
+
+/*		
+	pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();			// 创建UserApi
+	pUserApi->RegisterSpi(this);
+	pUserApi->RegisterFront(const_cast<char*>(simucfg.getparam("FRONT_ADDR").c_str()));
+	pUserApi->Init();
+	pUserApi->Join();
+*/
+}
+/*
+void ctp_quote::login()
+{
 	pUserApi=CThostFtdcMdApi::CreateFtdcMdApi();			// 创建UserApi
 	pUserApi->RegisterSpi(this);
 	pUserApi->RegisterFront(const_cast<char*>(simucfg.getparam("FRONT_ADDR").c_str()));
 	pUserApi->Init();
 	pUserApi->Join();
 }
+*/
 void ctp_quote::ReqUserLogin()
 {
 	int iResult = pUserApi->ReqUserLogin(req, ++nRequestID);
